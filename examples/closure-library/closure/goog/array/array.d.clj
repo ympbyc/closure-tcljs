@@ -97,7 +97,7 @@
 
 (ann bucket (All [T S] [(Array T) [T number (Array T) -> any] S -> Object]))
 
-(ann toObject (All [T S] [(U (Array T) goog.array.ArrayLike) [T number any -> string] S -> Object]))
+(ann toObject (All [T S] [(U (Array T) goog.array.ArrayLike) [T number any -> string] S -> (Object T)]))
 
 (ann range (All [] [number number number -> (Array number)]))
 

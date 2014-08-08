@@ -62,7 +62,8 @@ WIP. Not yet usable from core.typed
 * Rest parameters in `@param` and FunctionType
 * Exclude `@private` definitions
 * `@typedef` (partialy)
-* Ignore features TypeScript doesn't have
+* Derive annotations for constructor functions such as `Number.` from corresponding classes' constructor
+* Ignore features core.typed doesn't have
     * `@this`, `new` of function type
     * Nullable, Non-Nullable
 
@@ -73,8 +74,6 @@ WIP. Not yet usable from core.typed
 * Enum with `@enum` to TypeScript `Interface`
 * Dependencies of Closure Library files
 * Arity overloading with `IFn` (Optional Parameters)
-* Derive annotations for constructor functions such as `Number.` from corresponding classes' constructor
-* `Object.<string, Some>` this should be easy
 * One stop build system with Grunt or Gulp
 
 

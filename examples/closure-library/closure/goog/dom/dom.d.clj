@@ -3,9 +3,8 @@
 (defprotocol Appendable 
 )
 
+(ann DomHelper. [Document ->])
 (ann-datatype DomHelper (All [] [
-    constructor :- [Document ->]
-
     
     getDomHelper :- (All [] [Node -> goog.dom.DomHelper])
     

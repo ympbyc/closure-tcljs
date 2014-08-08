@@ -1,77 +1,79 @@
-closure-ts [![Build Status](https://travis-ci.org/teppeis/closure-ts.svg?branch=master)](https://travis-ci.org/teppeis/closure-ts)
+closure-tcljs
 ====
 
-> Generates TypeScript declaration files (.d.ts) from [Closure Library JSDoc annotations](https://developers.google.com/closure/compiler/docs/js-for-compiler).
+> Generates core.typed annotation files from [Closure Library JSDoc annotations](https://developers.google.com/closure/compiler/docs/js-for-compiler).
 
-The result is [closure-library.d.ts](https://github.com/teppeis/closure-library.d.ts "teppeis/closure-library.d.ts").
+** WIP **
 
 ## Example
 
 From this JavaScript code with annotations,
 ```javascript
 /**
- * Truncates a string to a certain length.
- * @param {string} str
- * @param {number} chars
- * @param {boolean=} opt_protectEscapedCharacters
- * @return {string}
+ * @typedef {Array|NodeList|Arguments|{length: number}}
  */
-goog.string.truncate = function(str, chars, opt_protectEscapedCharacters) {
-    // ...
+goog.array.ArrayLike;
+
+
+/**
+ * Returns the last element in an array without removing it.
+ * @param {Array.<T>|goog.array.ArrayLike} array The array.
+ * @return {T} Last item in array.
+ * @template T
+ */
+goog.array.peek = function(array) {
+  return array[array.length - 1];
 };
 ```
-closure-ts generates this declaration file (.d.ts).
-```javascript
-declare module goog.string {
-    /**
-     * Truncates a string to a certain length.
-     * @param {string} str
-     * @param {number} chars
-     * @param {boolean=} opt_protectEscapedCharacters
-     * @return {string}
-     */
-    function truncate(str: string, chars: number, opt_protectEscapedCharacters?: boolean): string;
-}
+
+closure-tcljs generates this declaration file (d.clj)
+
+```clojure
+(ns goog.array)
+
+(defprotocol ArrayLike)
+
+(ann peek (All [T] [(U (Array T) goog.array.ArrayLike) -> T]))
 ```
 
 ## Usage
 
 ```bash
+$ grunt
 $ closurets some-jsdoced-code.js
 $ ls
-some-jsdoced-code.d.ts
+some-jsdoced-code.d.clj
 some-jsdoced-code.js
 ```
 
 ## Project status
 
-Just PoC
+WIP. Not yet usable from core.typed
 
 ### Implemented
 
 * Variable with `@type`
 * Function with `@param` and `@return`
-* Enum with `@enum` to TypeScript `Interface`
-* Namespace to TypeScript `module`
-* Classes (`@constructor` and `@extends`)
-* Convert `*` to `any`
-* Generic type like `Array<number>`
+* Namespace to tcljs `ns`
+* Classes (`@constructor` and `@extends`) to tcljs datatype
+* Generic type like `(Array number)`
 * Generic classes and function with `@template`
-* Union type (partialy)
+* Union type
 * Record type
 * Rest parameters in `@param` and FunctionType
-* Optional parameters
 * Exclude `@private` definitions
 * `@typedef` (partialy)
 * Ignore features TypeScript doesn't have
     * `@this`, `new` of function type
     * Nullable, Non-Nullable
-    * `Object.<string, Some>`
 
 ### TODO
 
 * Interfaces
 * `@lends`
-* Expand union type
+* Enum with `@enum` to TypeScript `Interface`
 * Dependencies of Closure Library files
+* Arity overloading with `IFn` (Optional Parameters)
+* Derive annotations for constructor functions such as `Number.` from corresponding classes' constructor
+* `Object.<string, Some>` this should be easy
 * One stop build system with Grunt or Gulp

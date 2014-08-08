@@ -1,3 +1,5 @@
 node_modules
 test/all.js
 error.log
+.DS_Store
+*d.ts

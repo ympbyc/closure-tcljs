@@ -3,7 +3,7 @@ closure-tcljs
 
 > Generates core.typed annotation files from [Closure Library JSDoc annotations](https://developers.google.com/closure/compiler/docs/js-for-compiler).
 
-** WIP **
+**WIP**
 
 ## Example
 
@@ -39,8 +39,7 @@ closure-tcljs generates this declaration file (d.clj)
 ## Usage
 
 ```bash
-$ grunt
-$ closurets some-jsdoced-code.js
+$ bin/closure-tcljs some-jsdoced-code.js
 $ ls
 some-jsdoced-code.d.clj
 some-jsdoced-code.js
@@ -77,3 +76,14 @@ WIP. Not yet usable from core.typed
 * Derive annotations for constructor functions such as `Number.` from corresponding classes' constructor
 * `Object.<string, Some>` this should be easy
 * One stop build system with Grunt or Gulp
+
+
+## LICENSE
+
+[MIT](http://opensource.org/licenses/mit-license.php)
+(original repo doesn't have LICENCE.md but package.json says it's MIT)
+
++ **Original Work** Copyright (c) teppeis https://github.com/teppeis
++ **Modified Work** Copyright 2014 Minori Yamashita <ympbyc@gmail.com>
+
+TODO: Add LICENSE.md after confirming w/ teppeis

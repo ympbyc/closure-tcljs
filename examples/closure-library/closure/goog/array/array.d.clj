@@ -1,7 +1,11 @@
 (ns goog.array)
 
-(defprotocol ArrayLike 
-)
+(def-alias ArrayLike (U 
+    (Array any) 
+    NodeList 
+    Arguments 
+    (HMap :mandatory {:length number}) 
+))
 
 (ann peek (All [T] [(U (Array T) goog.array.ArrayLike) -> T]))
 
@@ -9,9 +13,9 @@
 
 (ann lastIndexOf (All [T] [(U (Array T) goog.array.ArrayLike) T number -> number]))
 
-(ann forEach (All [T S] [(U (Array T) goog.array.ArrayLike) [T number any -> any] S -> nil]))
+(ann forEach (All [T S] [(U (Array T) goog.array.ArrayLike) [T number any -> any] S -> ]))
 
-(ann forEachRight (All [T S] [(U (Array T) goog.array.ArrayLike) [T number any -> any] S -> nil]))
+(ann forEachRight (All [T S] [(U (Array T) goog.array.ArrayLike) [T number any -> any] S -> ]))
 
 (ann filter (All [T S] [(U (Array T) goog.array.ArrayLike) [T number any -> boolean] S -> (Array T)]))
 
@@ -39,15 +43,15 @@
 
 (ann isEmpty (All [] [goog.array.ArrayLike -> boolean]))
 
-(ann clear (All [] [goog.array.ArrayLike -> nil]))
+(ann clear (All [] [goog.array.ArrayLike -> ]))
 
-(ann insert (All [T] [(Array T) T -> nil]))
+(ann insert (All [T] [(Array T) T -> ]))
 
-(ann insertAt (All [] [goog.array.ArrayLike any number -> nil]))
+(ann insertAt (All [] [goog.array.ArrayLike any number -> ]))
 
-(ann insertArrayAt (All [] [goog.array.ArrayLike goog.array.ArrayLike number -> nil]))
+(ann insertArrayAt (All [] [goog.array.ArrayLike goog.array.ArrayLike number -> ]))
 
-(ann insertBefore (All [T] [(Array T) T T -> nil]))
+(ann insertBefore (All [T] [(Array T) T T -> ]))
 
 (ann remove (All [T] [(U (Array T) goog.array.ArrayLike) T -> boolean]))
 
@@ -63,23 +67,23 @@
 
 (ann clone (All [T] [(U (Array T) goog.array.ArrayLike) -> (Array T)]))
 
-(ann extend (All [VALUE] [(Array VALUE) (U (Array VALUE) VALUE) * -> nil]))
+(ann extend (All [VALUE] [(Array VALUE) (U (Array VALUE) VALUE) * -> ]))
 
-(ann splice (All [T] [(U (Array T) goog.array.ArrayLike) (U number void) number T * -> (Array T)]))
+(ann splice (All [T] [(U (Array T) goog.array.ArrayLike) (U number ) number T * -> (Array T)]))
 
 (ann slice (All [T] [(U (Array T) goog.array.ArrayLike) number number -> (Array T)]))
 
-(ann removeDuplicates (All [T] [(U (Array T) goog.array.ArrayLike) (Array any) [T -> string] -> nil]))
+(ann removeDuplicates (All [T] [(U (Array T) goog.array.ArrayLike) (Array any) [T -> string] -> ]))
 
 (ann binarySearch (All [TARGET VALUE] [(U (Array VALUE) goog.array.ArrayLike) TARGET [TARGET VALUE -> number] -> number]))
 
 (ann binarySelect (All [THIS VALUE] [(U (Array VALUE) goog.array.ArrayLike) [VALUE number any -> number] THIS -> number]))
 
-(ann sort (All [T] [(Array T) [T T -> number] -> nil]))
+(ann sort (All [T] [(Array T) [T T -> number] -> ]))
 
-(ann stableSort (All [T] [(Array T) [T T -> number] -> nil]))
+(ann stableSort (All [T] [(Array T) [T T -> number] -> ]))
 
-(ann sortObjectsByKey (All [] [(Array Object) string Function -> nil]))
+(ann sortObjectsByKey (All [] [(Array Object) string Function -> ]))
 
 (ann isSorted (All [T] [(Array T) [T T -> number] boolean -> boolean]))
 
@@ -107,8 +111,8 @@
 
 (ann rotate (All [T] [(Array T) number -> (Array T)]))
 
-(ann moveItem (All [] [(U (Array any) Arguments (HMap :mandatory {:length number})) number number -> nil]))
+(ann moveItem (All [] [(U (Array any) Arguments (HMap :mandatory {:length number})) number number -> ]))
 
 (ann zip (All [] [goog.array.ArrayLike * -> (Array (Array any))]))
 
-(ann shuffle (All [] [(Array any) [ -> number] -> nil]))
+(ann shuffle (All [] [(Array any) [ -> number] -> ]))

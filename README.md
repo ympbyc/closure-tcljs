@@ -26,12 +26,17 @@ goog.array.peek = function(array) {
 };
 ```
 
-closure-tcljs generates this declaration file (d.clj)
+closure-tcljs should generates this declaration file (d.clj)
 
 ```clojure
 (ns goog.array)
 
-(defprotocol ArrayLike)
+(def-alias ArrayLike (U
+    (Array any)
+    NodeList
+    Arguments
+    (HMap :mandatory {:length number})
+))
 
 (ann peek (All [T] [(U (Array T) goog.array.ArrayLike) -> T]))
 ```
